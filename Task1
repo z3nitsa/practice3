@@ -1,0 +1,35 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+int main() {
+    system("chcp 65001");
+    int d, m, y;
+    time_t now = time(0);
+    cout << "День рождения:\n";
+    cin >> d;
+    cout << "Месяц рождения:\n";
+    cin >> m;
+    cout << "Год рождения:\n";
+    cin >> y;
+
+    tm *ltm = localtime(&now);
+
+    int day = ltm->tm_mday - d;
+    int month = ltm->tm_mon - m;
+    int year = 1900 + ltm->tm_year - y;
+
+    if (day < 0){
+        day += d;
+    cout << "День: "<< day << endl;
+    }
+
+    if (month < 0)
+    {
+        month += 12;
+        year--;
+    }
+
+    cout << "Месяц: "<< month << endl;
+    cout << "Год: " << year <<endl;
+}
